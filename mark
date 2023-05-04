@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+TMP=/tmp/target_content
+FILE_OR_DIR="${1:-}"
+
+if [ -z "$FILE_OR_DIR" ];then
+  echo "Usage:"
+  echo "    mark file.txt"
+  exit 1
+elif ! [ -e "$FILE_OR_DIR" ];then
+  echo "$FILE_OR_DIR is not exist"
+  exit 1
+fi
+
+REAL_PATH="$(realpath "$FILE_OR_DIR")"
+
+echo "$REAL_PATH" 1> "$TMP"
+
+echo "mark $REAL_PATH"
+
+# (sleep 300 && echo > "$FILE_OR_DIR") &
